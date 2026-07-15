@@ -1,11 +1,6 @@
-export interface Region {
-	id:   string;
-	name: string;
-	lat:  number;
-	lng:  number;
-}
+import 'server-only';
 
-export const REGIONS: Region[] = [
+export const REGIONS = [
 	{ id: '1',  name: 'Marche',                lat: 43.6158, lng: 13.5189 },
 	{ id: '2',  name: 'Abruzzo',               lat: 42.3498, lng: 13.3995 },
 	{ id: '3',  name: 'Basilicata',            lat: 40.6404, lng: 15.8054 },

@@ -1,16 +1,15 @@
-import { json, error } from '@sveltejs/kit';
-import type { RequestHandler } from './$types';
-import { haversineKm, nearestRegion, searchArea } from '$lib/server/mise';
+import { NextResponse } from 'next/server';
+import { haversineKm, nearestRegion, searchArea } from '@/lib/server/mise';
 
 const MAX_STATIONS = 50;
 
-export const POST: RequestHandler = async ({ request }) => {
+export async function POST(request) {
 	const body = await request.json().catch(() => null);
 	const lat = body?.lat;
 	const lng = body?.lng;
 
 	if (typeof lat !== 'number' || typeof lng !== 'number' || Number.isNaN(lat) || Number.isNaN(lng)) {
-		throw error(400, 'Expected JSON body { lat: number, lng: number }');
+		return NextResponse.json({ message: 'Expected JSON body { lat: number, lng: number }' }, { status: 400 });
 	}
 
 	const region = nearestRegion({ lat, lng });
@@ -24,5 +23,5 @@ export const POST: RequestHandler = async ({ request }) => {
 		.sort((a, b) => a.distanceKm - b.distanceKm)
 		.slice(0, MAX_STATIONS);
 
-	return json({ region: region.name, stations });
-};
+	return NextResponse.json({ region: region.name, stations });
+}

@@ -1,14 +1,18 @@
+import 'server-only';
+
 // Server-only client for the public MISE "OsservaPrezzi Carburanti" API
 // (https://carburanti.mise.gov.it). No auth required for /search/* or
 // /registry/* — only /management/* (the private portal) needs a Bearer
 // token, which we never touch here.
 //
-// This file is only ever imported from +server.ts routes, so it's safe to
-// call the MISE API directly from here: browsers can't reach this code, and
-// server-to-server requests aren't subject to the browser CORS restriction
-// that blocks calling the MISE API straight from client-side JS (confirmed
-// via a live preflight test: OPTIONS against /search/area returns
-// "403 Invalid CORS request" with no Access-Control-Allow-Origin header).
+// This file is only ever imported from route.js Route Handlers, so it's
+// safe to call the MISE API directly from here: browsers can't reach this
+// code, and server-to-server requests aren't subject to the browser CORS
+// restriction that blocks calling the MISE API straight from client-side JS
+// (confirmed via a live preflight test: OPTIONS against /search/area
+// returns "403 Invalid CORS request" with no Access-Control-Allow-Origin
+// header). The `server-only` import above turns any accidental client-side
+// import of this file into a build-time error.
 //
 // /search/zone (NOT implemented/confirmed) — best-guess shape based on the
 // private portal's main.js: POST { "points": [ {"lat":.., "lng":..}, ... ] }
@@ -20,41 +24,12 @@
 // unconfirmed — revisit with a browser devtools capture on the live site if
 // you want this later. /search/area (used below) covers "find near me" fine.
 
-import { REGIONS, type Region } from './regions';
+import { REGIONS } from './regions';
 
 const BASE = 'https://carburanti.mise.gov.it/ospzApi';
 
-export interface LatLng {
-	lat: number;
-	lng: number;
-}
-
-export interface Fuel {
-	id: number;
-	price: number;
-	name: string;
-	fuelId: number;
-	isSelf: boolean;
-}
-
-export interface Station {
-	id: number;
-	name: string;
-	brand: string;
-	address: string;
-	location: LatLng;
-	insertDate: string;
-	fuels: Fuel[];
-}
-
-interface SearchAreaResponse {
-	success: boolean;
-	center: LatLng;
-	results: Station[];
-}
-
 /** Great-circle distance in km between two lat/lng points. */
-export function haversineKm(a: LatLng, b: LatLng): number {
+export function haversineKm(a, b) {
 	const R = 6371;
 	const dLat = ((b.lat - a.lat) * Math.PI) / 180;
 	const dLng = ((b.lng - a.lng) * Math.PI) / 180;
@@ -67,7 +42,7 @@ export function haversineKm(a: LatLng, b: LatLng): number {
 }
 
 /** Picks the region whose (approximate) centroid is closest to the given point. */
-export function nearestRegion(point: LatLng): Region {
+export function nearestRegion(point) {
 	let best = REGIONS[0];
 	let bestDist = Infinity;
 	for (const region of REGIONS) {
@@ -80,12 +55,8 @@ export function nearestRegion(point: LatLng): Region {
 	return best;
 }
 
-export async function searchArea(params: {
-	region: string;
-	province?: string;
-	town?: string;
-}): Promise<SearchAreaResponse> {
-	const body: Record<string, string> = { region: params.region };
+export async function searchArea(params) {
+	const body = { region: params.region };
 	if (params.province) body.province = params.province;
 	if (params.town) body.town = params.town;
 
