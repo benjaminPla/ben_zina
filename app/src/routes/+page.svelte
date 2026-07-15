@@ -164,7 +164,7 @@
 </script>
 
 <main>
-	<h1>⛽ Ben_zina più economica vicino a me</h1>
+	<h1>ben_zina più economica vicino a me</h1>
 
 	<button onclick={findNearMe} disabled={status === 'locating' || status === 'loading'}>
 		{#if status === 'locating'}
