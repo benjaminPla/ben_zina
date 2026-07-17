@@ -1,0 +1,184 @@
+# https://gist.github.com/ffermi/cb6bfb01656c9d45c4eb54768b5d2699
+
+@basePath = https://carburanti.mise.gov.it/ospzApi
+
+# NB: In questo documento non sono censite le API protette (es: `{{basePath}}/management/...`).
+
+###
+
+# @name getBrands
+GET {{basePath}}/registry/brands
+Accept: application/json
+
+### 
+
+# @name getFuels
+GET {{basePath}}/registry/fuels
+Accept: application/json
+
+###
+
+# @name getHighways
+GET {{basePath}}/registry/highway
+Accept: application/json
+
+###
+
+# @name getProvinces
+GET {{basePath}}/registry/province
+Accept: application/json
+
+###
+
+# @name getRegions
+GET {{basePath}}/registry/region
+Accept: application/json
+
+###
+
+# @name getServiceAreaById
+GET {{basePath}}/registry/servicearea/15350
+Accept: application/json
+
+###
+
+# @name getTowns
+GET {{basePath}}/registry/town?province=MI
+Accept: application/json
+
+
+###
+
+# @name getAllLogo
+GET {{basePath}}/registry/alllogos
+Accept: application/json
+//NB: image in base64
+
+###
+
+# @name getConventionList
+GET {{basePath}}/registry/conventions
+Accept: application/json
+
+###
+
+# @name getFlagList
+GET {{basePath}}/registry/flags
+Accept: application/json
+
+###
+
+# @name getServiceAreaNameList
+GET {{basePath}}/registry/adsname?streetId=1
+Accept: application/json
+
+####
+
+# @name getServicesList
+GET {{basePath}}/registry/services
+Accept: application/json
+
+####
+
+# @name getStationType
+GET {{basePath}}/registry/stationtype
+Accept: application/json
+
+####
+
+# @name getStreetList
+GET {{basePath}}/registry/streets?tipoId=1
+Accept: application/json
+
+####
+
+# @name getTipoDelegaList
+GET {{basePath}}/registry/tipodelega
+Accept: application/json
+
+####
+
+# @name getfuelTypeList
+GET {{basePath}}/registry/fueltype?flagId=337
+Accept: application/json
+
+####
+
+# @name searchByArea
+POST {{basePath}}/search/area
+Content-Type: application/json
+Accept: application/json
+
+{
+  "region":19,
+  "province":"MI",
+  "town":"Arese",
+  "fuelType":"1-x",
+  "priceOrder":"desc"
+}
+
+####
+
+# @name searchByHighway
+POST {{basePath}}/search/highway
+Content-Type: application/json
+Accept: application/json
+
+{
+  "highwayId":"A4-8",
+  "fuelType":"1-x",
+  "priceOrder":"asc"
+}
+
+####
+
+# @name searchByRoute
+POST {{basePath}}/search/route
+Content-Type: application/json
+Accept: application/json
+
+{
+  "fuelType":"1-x",
+  "priceOrder":"asc",
+  "points":[
+    {"lat":45.468500000000006,"lng":9.182400000000001},{"lat":45.46851,"lng":9.182310000000001},{"lat":45.468500000000006,"lng":9.18213},{"lat":45.468450000000004,"lng":9.181980000000001},{"lat":45.468360000000004,"lng":9.1819},{"lat":45.468250000000005,"lng":9.18186},{"lat":45.46811,"lng":9.181890000000001},{"lat":45.468,"lng":9.18199},{"lat":45.467940000000006,"lng":9.182160000000001},{"lat":45.467940000000006,"lng":9.182300000000001},{"lat":45.467940000000006,"lng":9.182350000000001},{"lat":45.468,"lng":9.18255},{"lat":45.46811,"lng":9.18265},{"lat":45.468180000000004,"lng":9.18267},{"lat":45.46826,"lng":9.182680000000001},{"lat":45.46858,"lng":9.18281},{"lat":45.468790000000006,"lng":9.182970000000001},{"lat":45.468880000000006,"lng":9.18302},{"lat":45.46898,"lng":9.18304},{"lat":45.469060000000006,"lng":9.18309},{"lat":45.46923,"lng":9.18317},{"lat":45.469350000000006,"lng":9.183240000000001},{"lat":45.46963,"lng":9.18332},{"lat":45.46999,"lng":9.18337},{"lat":45.47043,"lng":9.18331},{"lat":45.470710000000004,"lng":9.18323},{"lat":45.470870000000005,"lng":9.183150000000001},{"lat":45.471030000000006,"lng":9.183060000000001},{"lat":45.47130000000001,"lng":9.18284},{"lat":45.47167,"lng":9.182440000000001},{"lat":45.47176,"lng":9.182260000000001},{"lat":45.47186000000001,"lng":9.18215},{"lat":45.47265,"lng":9.181170000000002},{"lat":45.47307000000001,"lng":9.18063},{"lat":45.47317,"lng":9.180480000000001},{"lat":45.473240000000004,"lng":9.18058},{"lat":45.47346,"lng":9.180900000000001},{"lat":45.473760000000006,"lng":9.18138},{"lat":45.473850000000006,"lng":9.1819},{"lat":45.475010000000005,"lng":9.18168},{"lat":45.476330000000004,"lng":9.181460000000001},{"lat":45.47729,"lng":9.1813},{"lat":45.47758,"lng":9.18125},{"lat":45.47764,"lng":9.18129},{"lat":45.477990000000005,"lng":9.181420000000001},{"lat":45.47880000000001,"lng":9.18168},{"lat":45.480290000000004,"lng":9.182220000000001},{"lat":45.48067,"lng":9.182360000000001},{"lat":45.480740000000004,"lng":9.182450000000001},{"lat":45.48077000000001,"lng":9.182540000000001},{"lat":45.48084,"lng":9.18274},{"lat":45.481010000000005,"lng":9.18262},{"lat":45.48124000000001,"lng":9.18246},{"lat":45.48147,"lng":9.182260000000001},{"lat":45.481590000000004,"lng":9.182170000000001},{"lat":45.482130000000005,"lng":9.181790000000001},{"lat":45.482510000000005,"lng":9.181510000000001},{"lat":45.483270000000005,"lng":9.180940000000001},{"lat":45.48375,"lng":9.18058},{"lat":45.48425,"lng":9.180200000000001},{"lat":45.48431,"lng":9.18016},{"lat":45.4844,"lng":9.18035},{"lat":45.48445,"lng":9.180470000000001},{"lat":45.48462000000001,"lng":9.18078},{"lat":45.484790000000004,"lng":9.18101},{"lat":45.48489000000001,"lng":9.1811},{"lat":45.484950000000005,"lng":9.18115},{"lat":45.48503,"lng":9.180940000000001},{"lat":45.484930000000006,"lng":9.18083},{"lat":45.48489000000001,"lng":9.18078},{"lat":45.48471000000001,"lng":9.180520000000001},{"lat":45.48462000000001,"lng":9.180330000000001},{"lat":45.484570000000005,"lng":9.18016}]
+}
+
+####
+
+# @name searchByServiceArea
+POST {{basePath}}/search/servicearea
+Content-Type: application/json
+Accept: application/json
+
+{
+  "queryText":"GALLI",
+  "brand":"141",
+  "region":19,
+  "province":"MI",
+  "fuelType":"1-x",
+  "priceOrder":"asc"
+}
+
+####
+
+# @name searchByZone
+POST {{basePath}}/search/zone
+Content-Type: application/json
+Accept: application/json
+
+{
+  "points":[{"lat":45.468503,"lng":9.182402699999999}],
+  "fuelType":"1-x",
+  "priceOrder":"asc",
+  "radius":5
+}
+
+####
+
+# @name searchServiceAreaNamesByText
+GET {{basePath}}/search/servicearea?q=GALLI
+Accept: application/json
+
+####
+
