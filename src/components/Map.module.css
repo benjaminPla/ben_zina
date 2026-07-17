@@ -1,7 +1,40 @@
-.map {
+.mapWrap {
+	display:    flex;
 	flex:       1;
-	margin-top: var(--SPACING_NORMAL);
 	min-height: 0;
+	position:   relative;
+}
+
+.map {
+	border:     1px solid var(--GREY);
+	flex:       1;
+	min-height: 0;
+	overflow:   hidden;
+}
+
+.centerButton {
+	align-items:     center;
+	background:      var(--RED);
+	border:          1px solid var(--GREY);
+	border-radius:   50%;
+	color:           var(--TEXT);
+	display:         flex;
+	font-size:       var(--FONT_SIZE_NORMAL);
+	height:          2.25rem;
+	justify-content: center;
+	line-height:     1;
+	opacity:         0.85;
+	padding:         0;
+	position:        absolute;
+	right:           var(--SPACING_SMALL);
+	top:             var(--SPACING_SMALL);
+	width:           2.25rem;
+	z-index:         1000;
+}
+
+.centerButton:hover:not(:disabled) {
+	filter:  none;
+	opacity: 1;
 }
 
 .hint {
@@ -21,12 +54,13 @@
 }
 
 .price {
-    color:       var(--GREEN);
+    color:       var(--LIME);
     font-size:   var(--FONT_SIZE_BIG);
     font-weight: bold;
 }
 
-.noPrice {
+.noPrice,
+.updated {
     color:      var(--GREY);
     font-style: italic;
 }

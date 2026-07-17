@@ -106,6 +106,8 @@ export default function Map({ stations = [], location, selectedFuel, status, onL
 				const fuel      = station.fuels.find((f) => f.fuelId === fuelId && f.isSelf);
 				const priceText = fuel ? `&euro;${fuel.price.toFixed(3)}` : 'nessun prezzo';
 				const priceClass = fuel ? styles.price : styles.noPrice;
+				const updatedDate = station.insertDate ? new Date(station.insertDate) : null;
+				const updatedText = updatedDate && !isNaN(updatedDate) ? `Aggiornato: ${updatedDate.toLocaleDateString('it-IT')}` : null;
 				const marker = L.marker([station.location.lat, station.location.lng])
 					.addTo(currentMap)
 					.bindPopup(`
@@ -113,6 +115,7 @@ export default function Map({ stations = [], location, selectedFuel, status, onL
                             <span>${station.brand}</span>
                             <span>${station.name}</span>
                             <span class="${priceClass}">${priceText}</span>
+                            ${updatedText ? `<span class="${styles.updated}">${updatedText}</span>` : ''}
                         </div>`, { maxWidth: 220 });
 				runMarkers.push(marker);
 				bounds.push([station.location.lat, station.location.lng]);
@@ -132,9 +135,27 @@ export default function Map({ stations = [], location, selectedFuel, status, onL
 		};
 	}, [mapReady, stations, location, selectedFuel, status, onLocationChange, notify]);
 
+	const centerOnLocation = () => {
+		if (!map.current || !location) return;
+		map.current.setView([location.lat, location.lng], Math.max(map.current.getZoom(), 14));
+	};
+
 	return (
 		<>
-			<div className={styles.map} ref={mapContainer}></div>
+			<div className={styles.mapWrap}>
+				<div className={styles.map} ref={mapContainer}></div>
+				{location && (
+					<button
+						type="button"
+						className={styles.centerButton}
+						onClick={centerOnLocation}
+						aria-label="Centra la mappa sulla mia posizione"
+						title="Centra sulla mia posizione"
+					>
+						◎
+					</button>
+				)}
+			</div>
 			{location && <p className={styles.hint}>Se il segnalino non è nella posizione giusta, trascinalo.</p>}
 		</>
 	);
