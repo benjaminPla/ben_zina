@@ -6,17 +6,18 @@ import styles from './Notifications.module.css';
 const NotificationContext = createContext(null);
 
 const AUTO_DISMISS_MS = 5000;
+const TYPES           = ['error', 'warning'];
 
 export function useNotify() {
 	const notify = useContext(NotificationContext);
-	if (!notify) throw new Error('useNotify must be used within a NotificationProvider');
+    if (!notify) throw new Error('useNotify must be used within a NotificationProvider');
 	return notify;
 }
 
 export function NotificationProvider({ children }) {
 	const [toasts, setToasts] = useState([]);
-	const nextId = useRef(0);
-	const timeouts = useRef(new Map());
+	const nextId              = useRef(0);
+	const timeouts            = useRef(new Map());
 
 	const dismiss = useCallback((id) => {
 		const timeoutId = timeouts.current.get(id);
@@ -28,9 +29,11 @@ export function NotificationProvider({ children }) {
 	}, []);
 
 	const notify = useCallback(
-		(message) => {
+		(message, type) => {
+			if (!TYPES.includes(type)) throw new Error(`notify: type must be one of ${TYPES.join(', ')}, got "${type}"`);
+
 			const id = nextId.current++;
-			setToasts((current) => [...current, { id, message }]);
+			setToasts((current) => [...current, { id, message, type }]);
 			timeouts.current.set(
 				id,
 				setTimeout(() => dismiss(id), AUTO_DISMISS_MS)
@@ -44,7 +47,7 @@ export function NotificationProvider({ children }) {
 			{children}
 			<div className={styles.stack} role="alert" aria-live="assertive">
 				{toasts.map((toast) => (
-					<div key={toast.id} className={styles.toast}>
+					<div key={toast.id} className={`${styles.toast} ${styles[toast.type]}`}>
 						<span className={styles.message}>{toast.message}</span>
 						<button
 							type="button"
