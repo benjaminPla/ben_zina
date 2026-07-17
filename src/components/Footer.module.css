@@ -1,0 +1,15 @@
+.footer {
+	align-items:     center;
+	border-top:      1px solid var(--BLACK);
+	display:         flex;
+	flex-wrap:       wrap;
+	gap:             var(--SPACING_NORMAL);
+	justify-content: center;
+	margin-top:      var(--SPACING_NORMAL);
+	padding:         var(--SPACING_NORMAL) 0;
+    width: 100%;
+}
+
+.footer button {
+	width: auto;
+}

@@ -1,0 +1,32 @@
+.map {
+	flex:       1;
+	margin-top: var(--SPACING_NORMAL);
+	min-height: 0;
+}
+
+.hint {
+	color:     var(--GREY);
+	font-size: var(--FONT_SIZE_SMALL);
+}
+
+.marker {
+    display:        flex;
+    flex-direction: column;
+    max-width:      220px;
+    overflow-wrap:  break-word;
+}
+
+.marker > * {
+    font-size: var(--FONT_SIZE_SMALL);
+}
+
+.price {
+    color:       var(--GREEN);
+    font-size:   var(--FONT_SIZE_BIG);
+    font-weight: bold;
+}
+
+.noPrice {
+    color:      var(--GREY);
+    font-style: italic;
+}

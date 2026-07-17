@@ -1,5 +1,6 @@
 import 'leaflet/dist/leaflet.css';
 import './globals.css';
+import Footer from '@/components/Footer';
 import { NotificationProvider } from '@/components/Notifications';
 
 const title       = 'ben_zina';
@@ -43,7 +44,10 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="it">
 			<body>
-				<NotificationProvider>{children}</NotificationProvider>
+				<NotificationProvider>
+					{children}
+					<Footer />
+				</NotificationProvider>
 			</body>
 		</html>
 	);
