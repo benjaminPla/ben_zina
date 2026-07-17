@@ -2,7 +2,7 @@
 
 import styles from './Map.module.css';
 import { useNotify } from './Notifications';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 const ITALY_BOUNDS = [ [35.5, 6.6], [47.3, 18.6] ];
 
@@ -22,11 +22,27 @@ const LOADING_MESSAGES = {
 };
 
 export default function Map({ stations = [], location, selectedFuel, status, onLocationChange }) {
-	const notify                  = useNotify();
-	const mapContainer            = useRef(null);
-	const [mapReady, setMapReady] = useState(false);
-	const map                     = useRef(null);
-	const leaflet                 = useRef(null);
+	const hasResults                      = stations.length > 0;
+	const leaflet                         = useRef(null);
+	const [lockedHeight, setLockedHeight] = useState(null);
+	const mapContainer                    = useRef(null);
+	const [mapReady, setMapReady]         = useState(false);
+	const map                             = useRef(null);
+	const mapWrap                         = useRef(null);
+	const naturalHeight                   = useRef(null);
+	const notify                          = useNotify();
+
+	useLayoutEffect(() => {
+		if (hasResults) {
+			if (lockedHeight === null && naturalHeight.current !== null) {
+				setLockedHeight(naturalHeight.current);
+			}
+			return;
+		}
+		if (mapWrap.current) {
+			naturalHeight.current = mapWrap.current.getBoundingClientRect().height;
+		}
+	});
 
 	useEffect(() => {
 		if (!mapContainer.current) return;
@@ -146,10 +162,13 @@ export default function Map({ stations = [], location, selectedFuel, status, onL
 	};
 
 	const loadingMessage = LOADING_MESSAGES[status];
+	const mapWrapStyle   = hasResults && lockedHeight
+		? { flex: 'none', height: `${lockedHeight}px` }
+		: undefined;
 
 	return (
 		<>
-			<div className={styles.mapWrap}>
+			<div className={styles.mapWrap} ref={mapWrap} style={mapWrapStyle}>
 				<div className={`${styles.map} ${loadingMessage ? styles.mapLoading : ''}`} ref={mapContainer}></div>
 				{loadingMessage && (
 					<div className={styles.loadingOverlay}>

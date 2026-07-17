@@ -3,6 +3,7 @@
 import { FUELS } from '@lib/constants'
 import getGeolocation from '@lib/geolocation'
 import Map from '../components/Map';
+import StationsTable from '../components/StationsTable';
 import { useNotify } from '../components/Notifications'
 import { useState } from 'react';
 
@@ -98,6 +99,8 @@ export default function Page() {
 				status={status}
 				onLocationChange={handleLocationChange}
 			/>
+
+			<StationsTable stations={stations} selectedFuel={fuel} />
 
 		</main>
     )

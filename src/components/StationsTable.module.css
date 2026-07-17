@@ -1,0 +1,39 @@
+.wrap {
+	flex-shrink: 0;
+	max-height:  40vh;
+	overflow:    auto;
+}
+
+.table {
+	background:      var(--surface);
+	border:          1px solid var(--border);
+	border-collapse: collapse;
+	width:           100%;
+}
+
+.table th,
+.table td {
+	border-bottom: 1px solid var(--border);
+	padding:       var(--SPACING_SMALL);
+	text-align:    left;
+	white-space:   nowrap;
+}
+
+.table th {
+	font-size: var(--FONT_SIZE_SMALL);
+}
+
+.table tbody tr:last-child td {
+	border-bottom: none;
+}
+
+.price {
+	color:       var(--accent);
+	font-size:   var(--FONT_SIZE_BIG);
+	font-weight: bold;
+}
+
+.stale {
+	color:      var(--warning);
+	font-style: italic;
+}
