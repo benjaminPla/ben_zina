@@ -1,13 +1,19 @@
 :root {
-    --BG:     #f8fafc;
-    --BLUE:   #2563eb;
-    --GREEN:  #16a34a;
-    --GREY:   #666;
-    --LIME:   #84cc16;
-    --ORANGE: #f97316;
-    --RED:    #dc2626;
-    --TEXT:   #1e293b;
-    --WHITE:  #fff;
+    --bg:            #F8FAFC;
+    --surface:       #FFFFFF;
+
+    --text:          #111827;
+    --muted:         #6B7280;
+
+    --border:        #E5E7EB;
+
+    --primary:       #2563EB;
+
+    --success:       #16A34A;
+    --warning:       #F59E0B;
+    --danger:        #DC2626;
+
+    --accent:        #84CC16;
 
     --FONT_SIZE_BIG:    clamp(1.5rem, 0.5vw  + 1rem,   1.2rem);
     --FONT_SIZE_NORMAL: clamp(1rem,   0.5vw  + 1rem,   1.1rem);
@@ -22,7 +28,7 @@
 
 * {
 	box-sizing: border-box;
-    color:           var(--TEXT);
+    color:           var(--text);
     font-size:       var(--FONT_SIZE_NORMAL);
     margin:     0;
     padding:    0;
@@ -31,7 +37,7 @@
 
 body {
     align-items:     center;
-    background:      var(--BG);
+    background:      var(--bg);
     display:         flex;
     flex-direction:  column;
     gap:             var(--SPACING_NORMAL);
@@ -45,21 +51,20 @@ main {
     flex-direction: column;
     gap:            var(--SPACING_SMALL);
     max-width:      var(--CONTENT_MAX_WIDTH);
-    /* padding:        var(--SPACING_NORMAL) 0; */
     width:          100%;
 }
 
 input, select {
-	background: var(--WHITE);
-	border:     1px solid var(--GREY);
+	background: var(--surface);
+	border:     1px solid var(--border);
 	padding:    var(--SPACING_SMALL);
     width:      100%;
 }
 
 button {
-	background:  var(--GREEN);
+	background:  var(--success);
 	border:      none;
-	color:       var(--WHITE);
+	color:       var(--surface);
 	cursor:      pointer;
     padding:   var(--SPACING_SMALL);
     width:     100%;
@@ -71,7 +76,7 @@ button:hover:not(:disabled) {
 
 button:disabled,
 option:disabled {
-    background: var(--GREY);
+    background: var(--muted);
     cursor:     not-allowed;
     opacity:    0.5;
 }
@@ -79,7 +84,7 @@ option:disabled {
 input:focus-visible,
 select:focus-visible,
 button:focus-visible {
-	outline:        2px solid var(--BLUE);
+	outline:        2px solid var(--primary);
 	outline-offset: 2px;
 }
 
@@ -89,8 +94,8 @@ h1 {
 
 .controls {
 	align-items:            center;
-	background:             var(--WHITE);
-	border:                 1px solid var(--GREY);
+	background:             var(--surface);
+	border:                 1px solid var(--border);
 	display:                grid;
 	gap:                    var(--SPACING_SMALL);
 	grid-template-columns:  auto auto auto 1fr;

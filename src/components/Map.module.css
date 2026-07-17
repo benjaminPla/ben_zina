@@ -6,7 +6,7 @@
 }
 
 .map {
-	border:     1px solid var(--GREY);
+	border:     1px solid var(--border);
 	flex:       1;
 	min-height: 0;
 	overflow:   hidden;
@@ -14,10 +14,10 @@
 
 .centerButton {
 	align-items:     center;
-	background:      var(--RED);
-	border:          1px solid var(--GREY);
+	background:      var(--danger);
+	border:          1px solid var(--border);
 	border-radius:   50%;
-	color:           var(--TEXT);
+	color:           var(--text);
 	display:         flex;
 	font-size:       var(--FONT_SIZE_NORMAL);
 	height:          2.25rem;
@@ -38,7 +38,7 @@
 }
 
 .hint {
-	color:     var(--GREY);
+	color:     var(--muted);
 	font-size: var(--FONT_SIZE_SMALL);
 }
 
@@ -54,13 +54,13 @@
 }
 
 .price {
-    color:       var(--LIME);
+    color:       var(--accent);
     font-size:   var(--FONT_SIZE_BIG);
     font-weight: bold;
 }
 
 .noPrice,
 .updated {
-    color:      var(--GREY);
+    color:      var(--muted);
     font-style: italic;
 }

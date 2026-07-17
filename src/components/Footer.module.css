@@ -1,7 +1,7 @@
 .footer {
 	align-items:     center;
-	background:      var(--WHITE);
-	border:          1px solid var(--GREY);
+	background:      var(--surface);
+	border:          1px solid var(--border);
 	display:         flex;
 	flex-direction:  row;
 	flex-wrap:       nowrap;
@@ -24,12 +24,12 @@
 }
 
 .footer button {
-	background: var(--BLUE);
+	background: var(--primary);
 	font-size:  var(--FONT_SIZE_SMALL);
 }
 
 .blurb {
-	color:      var(--GREY);
+	color:      var(--muted);
     flex-grow:  1;
 	font-size:  var(--FONT_SIZE_SMALL);
     text-align: right;

@@ -18,9 +18,12 @@
 	width:        max-content;
 }
 
-.error,
+.error {
+	background: var(--danger);
+}
+
 .warning {
-	background: var(--ORANGE);
+	background: var(--warning);
 }
 
 .message {
