@@ -69,26 +69,22 @@ export default function Page() {
 
 	return (
 		<main>
-			<h1>ben_zina</h1>
+            <h1>ben_zina</h1>
             <p>Trova il carburante più economico vicino a te</p>
 
 			<div className="controls">
-				<label>
-					<span>Raggio:</span>
-                    <input type='number' value={radius} min={RADIUS_MIN} max={RADIUS_MAX} step="1" onChange={handleRadiusChange}/>
-                </label>
+				<label htmlFor="radius">Raggio (km):</label>
+				<input id="radius" type='number' value={radius} min={RADIUS_MIN} max={RADIUS_MAX} step="1" onChange={handleRadiusChange}/>
 
-				<label>
-					<span>Carburante:</span>
-					<select value={fuel} onChange={handleFuelChange}>
-						<option value="" disabled>Seleziona</option>
-						{FUELS.map((fuel) => (
-							<option key={fuel.id} value={fuel.id}>
-								{fuel.description}
-							</option>
-						))}
-					</select>
-				</label>
+				<label htmlFor="fuel">Carburante:</label>
+				<select id="fuel" value={fuel} onChange={handleFuelChange}>
+					<option value="" disabled>Seleziona</option>
+					{FUELS.map((fuel) => (
+						<option key={fuel.id} value={fuel.id}>
+							{fuel.description}
+						</option>
+					))}
+				</select>
 			</div>
 
 			<button onClick={search} disabled={!fuel || !radius || status === 'locating' || status === 'loading'}>

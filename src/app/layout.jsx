@@ -2,6 +2,9 @@ import 'leaflet/dist/leaflet.css';
 import './globals.css';
 import Footer from '@/components/Footer';
 import { NotificationProvider } from '@/components/Notifications';
+import { Roboto } from 'next/font/google';
+
+const roboto = Roboto({ subsets: ['latin'], weight: ['400', '500', '700'] });
 
 const title       = 'ben_zina';
 const description = 'Trova il carburante più economico vicino a te';
@@ -43,7 +46,7 @@ export const viewport = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="it">
-			<body>
+			<body className={roboto.className}>
 				<NotificationProvider>
 					{children}
 					<Footer />
