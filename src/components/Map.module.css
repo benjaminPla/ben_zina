@@ -65,6 +65,29 @@
 	font-size: var(--FONT_SIZE_SMALL);
 }
 
+:global(.leaflet-popup-close-button) {
+	align-items:     center;
+	color:           var(--muted);
+	display:         flex;
+	height:          24px;
+	justify-content: center;
+	line-height:     normal;
+	position:        absolute;
+	right:           4px;
+	top:             4px;
+	width:           24px;
+}
+
+:global(.leaflet-popup-close-button span) {
+	font-size:   1.1rem;
+	line-height: 1;
+}
+
+:global(.leaflet-popup-close-button):hover,
+:global(.leaflet-popup-close-button):focus {
+	color: var(--text);
+}
+
 .marker {
     display:        flex;
     flex-direction: column;

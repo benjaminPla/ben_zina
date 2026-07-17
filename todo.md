@@ -5,4 +5,4 @@
 - [x] update center map btn
 - [ ] render stations table
 - [x] update loading ux
-- [ ] fix marker close btn
+- [x] fix marker close btn
