@@ -71,7 +71,7 @@ export default function Page() {
 	return (
 		<main>
             <h1>ben_zina</h1>
-            <p>Trova il carburante più economico vicino a te</p>
+            <p className="subtitle">Trova il carburante più economico vicino a te</p>
 
 			<div className="controls">
 				<label htmlFor="radius">Raggio (km):</label>

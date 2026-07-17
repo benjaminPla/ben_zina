@@ -33,12 +33,12 @@ export default function StationsTable({ stations = [], selectedFuel }) {
 
 						return (
 							<tr key={station.id ?? i}>
-								<td>{station.brand}</td>
-								<td>{station.name}</td>
-								<td className={stale ? styles.stale : undefined}>
+								<td data-label="Marca">{station.brand}</td>
+								<td data-label="Distributore">{station.name}</td>
+								<td data-label="Aggiornato" className={stale ? styles.stale : undefined}>
 									{validDate ? updatedDate.toLocaleDateString('it-IT') : '—'}
 								</td>
-								<td className={styles.price}>{priceText}</td>
+								<td data-label="Prezzo" className={styles.price}>{priceText}</td>
 							</tr>
 						);
 					})}

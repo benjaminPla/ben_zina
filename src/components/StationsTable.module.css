@@ -1,7 +1,5 @@
 .wrap {
 	flex-shrink: 0;
-	max-height:  40vh;
-	overflow:    auto;
 }
 
 .table {
@@ -36,4 +34,46 @@
 .stale {
 	color:      var(--warning);
 	font-style: italic;
+}
+
+@media (max-width: 600px) {
+	.table,
+	.table tbody,
+	.table tr,
+	.table td {
+		display: block;
+        font-size: var(--FONT_SIZE_SMALL);
+	}
+
+	.table thead {
+		display: none;
+	}
+
+	.table tr {
+		border-bottom: 1px solid var(--border);
+		padding:        var(--SPACING_SMALL) 0;
+	}
+
+	.table tr:last-child {
+		border-bottom: none;
+	}
+
+	.table td {
+		border-bottom:   none;
+		display:         flex;
+		gap:             var(--SPACING_NORMAL);
+		justify-content: space-between;
+		padding:         calc(var(--SPACING_SMALL) / 2) var(--SPACING_SMALL);
+        text-align:      right;
+		white-space:     normal;
+	}
+
+	.table td::before {
+		color:       var(--muted);
+		content:     attr(data-label);
+	}
+
+    .price {
+        font-weight: normal;
+    }
 }

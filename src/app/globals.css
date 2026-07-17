@@ -92,6 +92,10 @@ h1 {
     font-size: var(--FONT_SIZE_BIG);
 }
 
+.subtitle {
+    font-size: var(--FONT_SIZE_SMALL);
+}
+
 .controls {
 	align-items:            center;
 	background:             var(--surface);
