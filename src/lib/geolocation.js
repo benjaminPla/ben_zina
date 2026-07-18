@@ -1,7 +1,13 @@
+const ERROR_MESSAGES = {
+  1: "Permesso di geolocalizzazione negato. Abilita la posizione nelle impostazioni del browser.",
+  2: "Posizione non disponibile al momento. Riprova.",
+  3: "Tempo scaduto durante la ricerca della posizione. Riprova.",
+};
+
 export default function getGeolocation() {
   return new Promise((resolve, reject) => {
     if (!navigator.geolocation) {
-      reject({ message: "Geolocation not supported" });
+      reject({ message: "Geolocalizzazione non supportata da questo browser." });
       return;
     }
 
@@ -13,13 +19,13 @@ export default function getGeolocation() {
       },
 
       (error) => {
-        reject({ message: error.message });
+        reject({ message: ERROR_MESSAGES[error.code] || error.message });
       },
 
       {
         enableHighAccuracy: true,
         maximumAge:         0,
-        timeout:            5000,
+        timeout:            15_000,
       }
     );
   });
