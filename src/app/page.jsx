@@ -14,12 +14,12 @@ const RADIUS_MAX = 20;
 export default function Page() {
 	const notify = useNotify();
 
-	const [fuel, setFuel]                   = useState('');
-	const [location, setLocation]           = useState(null);
-	const [radius, setRadius]               = useState(2);
+	const [fuel,          setFuel]          = useState('');
+	const [location,      setLocation]      = useState(null);
+	const [radius,        setRadius]        = useState(2);
 	const [selectedIndex, setSelectedIndex] = useState(null);
-	const [stations, setStations]           = useState([]);
-	const [status, setStatus]               = useState('idle');
+	const [stations,      setStations]      = useState([]);
+	const [status,        setStatus]        = useState('idle');
 
     async function fetchStations(lat, lng) {
 		try {
