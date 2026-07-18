@@ -21,8 +21,6 @@ services:
     depends_on:
       - app
     volumes:
-      # Host-side path is intentionally separate from pichel's /etc/letsencrypt -
-      # zero shared filesystem state between the two projects' cert handling.
       - /etc/letsencrypt-benzina:/etc/letsencrypt:ro
       - certbot-www:/var/www/certbot:ro
     networks:
